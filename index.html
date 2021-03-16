@@ -1,99 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Oh my food !</title>
-        <meta charset="uf-8">
+        <meta charset="utf-8">
         <meta name="descrition" content="Découvrez des restaurants d'exception sélectionnés par nos soins, composez votre menu à l'avance et réservez votre table. Fini les temps d'attente au restaurant !">
         <meta name="keywords" content="restaurants, réservation, paris, gastronomique, commande">
+        <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://kit.fontawesome.com/f492b45c83.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <header>
-            <img src="" alt="">
+            <img class="header__logo" src="images/logo/ohmyfood.png" alt="logo">
         </header>
 
         <main>
             <section>
-
                 <form>
-
-                    <label></label>
-                    <input>
-
+                    <label for="search"><span class="fas fa-map-marker"></span></label>
+                    <input type="search" value="Paris, Belleville" name="search" id="search">
                 </form>
             </section>
 
             <section>
 
-                <h1></h1>
-                <p></p>
-                <button></button>
+                <h1Réservez le menu qui vous convient</h1>
+                <p>Découvrez des restaurants d'exception, sélectionnés par nos soins</p>
+                <button>Explorez nos restaurants</button>
 
             </section>
 
             <section>
 
-                <h2></h2>
-                <button><span class=""><p></p></span><span class=""></span></button>
-                <button><span class=""><p></p></span><span class=""></span></button>
-                <button><span class=""><p></p></span><span class=""></span></button>
-
+                <h2>Fonctionnement</h2>
+                <div class="how-to">
+                    <button class="stage"><span class="stage__number"><p>1</p></span><span class="stage__icon"></span>Choisissez un restaurant</button>
+                    <button class="stage"><span class="stage__number"><p>2</p></span><span class="stage__icon"></span>Composez votre <menu></menu></button>
+                    <button class="stage"><span class="stage__number"><p>3</p></span><span class="stage__icon"></span>Dégustez au restaurant</button>
+                </div>
+        
             </section>
 
             <section>
 
-                <h2></h2>
+                <h2>Restaurants</h2>
 
                 <div class="card">
 
                     <article class="preview">
                         <img class="preview__image" src="" alt="">
-                        <div>
-                            <div>
-                                <h3></h3>
-                                <p></p>
+                        <div class="preview__bottom">
+                            <div class="preview__text">
+                                <h3 class="preview__name">La palette du goût</h3>
+                                <p class="previex__descrition">Ménilmontant</p>
                             </div>
-                            <span></span>
+                            <span class="like-button"></span>
                         </div>
-                        <div><p></p></div>
+                        <div class="new-message"><p class="new-message__text">Nouveau</p></div>
                     </article>
 
                     <article class="preview">
                         <img class="preview__image" src="" alt="">
-                        <div>
-                            <div>
-                                <h3></h3>
-                                <p></p>
+                        <div class="preview__bottom">
+                            <div class="preview__text">
+                                <h3 class="preview__name">La note enchantée</h3>
+                                <p class="previex__descrition">Charonne</p>
                             </div>
-                            <span></span>
+                            <span class="like-button"></span>
                         </div>
-                        <div><p></p></div>
+                        <div class="new-message"><p class="new-message__text">Nouveau</p></div>
                     </article>
-    
+                    
                     <article class="preview">
                         <img class="preview__image" src="" alt="">
-                        <div>
-                            <div>
-                                <h3></h3>
-                                <p></p>
+                        <div class="preview__bottom">
+                            <div class="preview__text">
+                                <h3 class="preview__name">À la française</h3>
+                                <p class="previex__descrition">Cité Rouge</p>
                             </div>
-                            <span></span>
+                            <span class="like-button"></span>
                         </div>
-                        <div><p></p></div>
+                        <div class="new-message"><p class="new-message__text"></p></div>
                     </article>
-    
+
                     <article class="preview">
                         <img class="preview__image" src="" alt="">
-                        <div>
-                            <div>
-                                <h3></h3>
-                                <p></p>
+                        <div class="preview__bottom">
+                            <div class="preview__text">
+                                <h3 class="preview__name">Le délice des sens</h3>
+                                <p class="previex__descrition">Folie-Méricourt</p>
                             </div>
-                            <span></span>
+                            <span class="like-button"></span>
                         </div>
-                        <div><p></p></div>
+                        <div class="new-message"><p class="new-message__text"></p></div>
                     </article>
 
                 </div>
@@ -101,12 +102,12 @@
         </main>
 
         <footer>
-            <img src="" alt="">
+            <img src="images/logo/ohmyfood.png" alt="logo">
             <ul>
-                <li><span></span></li>
-                <li><span></span></li>
-                <li></li>
-                <li></li>
+                <li><span></span>Proposer un restaurant</li>
+                <li><span></span>Devenir partenaire</li>
+                <li>Mentions légales</li>
+                <li>Contact</li> <!-- think about how to lead to the email address -->
             </ul>
         </footer>
     </body>
