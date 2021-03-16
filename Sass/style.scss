@@ -1,7 +1,36 @@
+// Variables
+
+$primary-color: #9356DC;
+$secondary-color: #FF79DA;
+$tertiary-color: #99E2D0;
+$lightgray-color: #F6F6F6;
+$gray-color: darken($lightgray-color, 5%);
+$darkgray-color: darken($lightgray-color, 71%);
+
+// Maps
+
 $breakpoints: 
 (
     mobile: 600px
 );
+
+$font-size-input:
+(
+    mobile:
+    (
+        section-heading: 24px,
+        card-heading: 16px,
+        text: 14px,
+    ),
+    desktop:
+    (
+        section-heading: 28px,
+        card-heading: 18px,
+        text: 18px,
+    )
+);
+
+// Mixins
 
 @mixin mobile-only
 {
@@ -9,6 +38,13 @@ $breakpoints:
         @content;
     }
 };
+
+// Layouts
+
+body
+{
+    margin: 0;
+}
 
 .header
 {
@@ -22,5 +58,34 @@ $breakpoints:
         object-fit: contain;
         width: 100%;
         margin: 1rem 0;
+    }
+}
+
+.search
+{
+    padding: 1rem 1rem;
+    background: $gray-color;
+    text-align: center;
+    &__text
+    {
+        background: transparent;
+        border: none;
+        $font-size: map-get($map: $font-size-input, $key: desktop);
+        font-size: map-get($map: $font-size, $key: text);
+        
+        @include mobile-only
+        {
+            $font-size: map-get($map: $font-size-input, $key: mobile);
+            font-size: map-get($map: $font-size, $key: text);
+        }
+        &:focus
+        {
+            border: none;
+        }
+    }
+    &__label
+    {
+        padding: 0 1rem 0 0;
+        vertical-align: top;
     }
 }
