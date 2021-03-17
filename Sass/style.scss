@@ -4,6 +4,7 @@ $primary-color: #9356DC;
 $secondary-color: #FF79DA;
 $tertiary-color: #99E2D0;
 $lightgray-color: #F6F6F6;
+$white-color: #fff;
 $gray-color: darken($lightgray-color, 5%);
 $darkgray-color: darken($lightgray-color, 71%);
 
@@ -39,11 +40,34 @@ $font-size-input:
     }
 };
 
+// Typography
+
+@font-face
+{
+    font-family: 'Roboto';
+    src: url(./fonts/Roboto-Regular.ttf) format('truetype'),
+        url(./fonts/Roboto-Bold.ttf) format('truetype'),
+        url(./fonts/Roboto-Light.ttf) format('truetype'),
+        url(./fonts/Roboto-Black.ttf) format('truetype');
+}
+
 // Layouts
 
 body
 {
     margin: 0;
+    font-family: 'Roboto';   
+}
+
+h1, h2
+{
+    $font-size: map-get($map: $font-size-input, $key: desktop);
+    font-size: map-get($map: $font-size, $key: section-heading);
+    @include mobile-only
+    {
+        $font-size: map-get($map: $font-size-input, $key: mobile);
+        font-size: map-get($map: $font-size, $key: section-heading);
+    }
 }
 
 .header
@@ -87,5 +111,53 @@ body
     {
         padding: 0 1rem 0 0;
         vertical-align: top;
+    }
+}
+
+.description
+{
+    background-color: $lightgray-color;
+    text-align: center;
+    padding: 2.5rem 1rem 3rem 1rem;
+    line-height: 1.1;
+    &__heading
+    {
+        margin: 0;
+        font-weight: bold;
+    }
+    &__text
+    {
+        font-weight: 300;
+        font-size: 18px;
+        margin: 1rem 0 2rem 0;
+        $font-size: map-get($map: $font-size-input, $key: desktop);
+        font-size: map-get($map: $font-size, $key: text);
+        @include mobile-only
+        {
+            $font-size: map-get($map: $font-size-input, $key: mobile);
+            font-size: map-get($map: $font-size, $key: text);
+        }
+    }
+    &__button
+    {
+        padding: 1rem 1.5rem;
+        border-radius: 25px;
+        border: none;
+        background: linear-gradient(170deg, $secondary-color, $primary-color);
+        box-shadow: 0 5px 7px darken($gray-color, 15%);
+        color: $white-color;
+        font-family: 'Roboto';
+        $font-size: map-get($map: $font-size-input, $key: desktop);
+        font-size: map-get($map: $font-size, $key: text);
+        &:hover
+        {
+            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
+            box-shadow: 0 5px 7px darken($gray-color, 25%);
+        }
+        @include mobile-only
+        {
+            $font-size: map-get($map: $font-size-input, $key: mobile);
+            font-size: map-get($map: $font-size, $key: text);
+        }
     }
 }
