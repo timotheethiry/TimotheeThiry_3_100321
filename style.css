@@ -226,6 +226,48 @@ input, button {
   font-size: 22px;
   padding: 0 0.1rem;
   position: relative;
+  /*box-sizing: border-box;
+      display: inline-block;
+      height: 14px;
+      width: 14px;
+      position: relative;
+      background-color: $white-color;
+      border: solid 2px $darkgray-color;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+      &:before
+      {
+          box-sizing: border-box;
+          content: "";
+          position: absolute;
+          border-radius: 14px 14px 0 0;
+          width: 13.6px;
+          height: 10px;
+          top: -8px;
+          left: 0.4px;
+          background-color: $white-color;
+          border: solid 2px $darkgray-color;
+          border-bottom: none;
+      }
+      &:after
+      {
+          box-sizing: border-box;
+          content: "";
+          position: absolute;
+          border-radius: 14px 0 0 14px;
+          width: 10px;
+          height: 13.6px;
+          top: 0.4px;
+          left: -8px;
+          background-color: $white-color;
+          border: solid 2px $darkgray-color;
+          border-right: none;
+      }
+      &:hover
+      {
+          background: linear-gradient(-45deg, $secondary-color, $primary-color);
+      }*/
 }
 .fa-heart--small {
   content: "";
@@ -244,47 +286,33 @@ input, button {
   -webkit-text-fill-color: transparent;
 }
 
-/*box-sizing: border-box;
-display: inline-block;
-height: 14px;
-width: 14px;
-position: relative;
-background-color: $white-color;
-border: solid 2px $darkgray-color;
-border-top: none;
-border-left: none;
-transform: rotate(45deg);
-&:before
-{
-    box-sizing: border-box;
-    content: "";
-    position: absolute;
-    border-radius: 14px 14px 0 0;
-    width: 13.6px;
-    height: 10px;
-    top: -8px;
-    left: 0.4px;
-    background-color: $white-color;
-    border: solid 2px $darkgray-color;
-    border-bottom: none;
+footer {
+  padding: 1.5rem;
+  background: #414141;
 }
-&:after
-{
-    box-sizing: border-box;
-    content: "";
-    position: absolute;
-    border-radius: 14px 0 0 14px;
-    width: 10px;
-    height: 13.6px;
-    top: 0.4px;
-    left: -8px;
-    background-color: $white-color;
-    border: solid 2px $darkgray-color;
-    border-right: none;
+
+.footer__logo {
+  height: 18px;
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
 }
-&:hover
-{
-    background: linear-gradient(-45deg, $secondary-color, $primary-color);
-}*/
+.footer__icon {
+  float: left;
+  font-size: 12px;
+  transform: translateY(4px);
+}
+
+footer ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.6;
+}
+
+span + li {
+  padding-left: 1.5rem;
+}
 
 /*# sourceMappingURL=style.css.map */
