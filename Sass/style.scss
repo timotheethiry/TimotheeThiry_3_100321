@@ -16,9 +16,15 @@ $breakpoints:
     tablet: 1200px
 );
 
-$font-size-input:
+$font-size-list:
 (
     mobile:
+    (
+        section-heading: 24px,
+        card-heading: 18px,
+        text: 16px,
+    ),
+    tablet:
     (
         section-heading: 24px,
         card-heading: 18px,
@@ -69,22 +75,32 @@ body
 
 h1, h2
 {
-    $font-size: map-get($map: $font-size-input, $key: desktop);
+    $font-size: map-get($map: $font-size-list, $key: desktop);
     font-size: map-get($map: $font-size, $key: section-heading);
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: section-heading); 
+    }
     @include mobile-only
     {
-        $font-size: map-get($map: $font-size-input, $key: mobile);
+        $font-size: map-get($map: $font-size-list, $key: mobile);
         font-size: map-get($map: $font-size, $key: section-heading);
     }
 }
 
 h3
 {
-    $font-size: map-get($map: $font-size-input, $key: desktop);
+    $font-size: map-get($map: $font-size-list, $key: desktop);
     font-size: map-get($map: $font-size, $key: card-heading);
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: card-heading); 
+    }
     @include mobile-only
     {
-        $font-size: map-get($map: $font-size-input, $key: mobile);
+        $font-size: map-get($map: $font-size-list, $key: mobile);
         font-size: map-get($map: $font-size, $key: card-heading);
     }
 
@@ -92,12 +108,16 @@ h3
 
 p, input, button
 {
-    $font-size: map-get($map: $font-size-input, $key: desktop);
+    $font-size: map-get($map: $font-size-list, $key: desktop);
     font-size: map-get($map: $font-size, $key: text);
-    
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: text); 
+    }
     @include mobile-only
     {
-        $font-size: map-get($map: $font-size-input, $key: mobile);
+        $font-size: map-get($map: $font-size-list, $key: mobile);
         font-size: map-get($map: $font-size, $key: text);
     }
 }
@@ -106,6 +126,13 @@ input, button
 {
     background: transparent;
     border: none;
+    outline: none;
+}
+
+header
+{
+    position: relative;
+    box-shadow: 0 1px 5px darken($gray-color, 25%);
 }
 
 .header
@@ -113,13 +140,15 @@ input, button
     &__logo
     {
         height: 50px;
-        @include mobile-only
+        margin: 1.5rem 0 1rem 0;
+        @include tablet-only
         {
             height: 30px;
+            margin: 1rem 0 0.5rem 0;
         }
         object-fit: contain;
         width: 100%;
-        margin: 1rem 0;
+        
     }
 }
 
@@ -128,6 +157,17 @@ input, button
     padding: 1rem 1rem;
     background: $gray-color;
     text-align: center;
+    box-shadow: inset 0 3px 5px $gray-color;
+    &__form
+    {
+        width: 175px;
+        margin: auto;
+        display: flex;
+    }
+    &__label
+    {
+        padding: 0 1rem 0 0;
+    }
     &__text
     {
         font-family: 'Roboto';
@@ -137,18 +177,19 @@ input, button
             border: none;
         }
     }
-    &__label
-    {
-        padding: 0 1rem 0 0;
-        vertical-align: top;
-    }
+    
 }
 
 .description
 {
     background-color: $lightgray-color;
     text-align: center;
-    padding: 2.5rem 1rem 3rem 1rem;
+    padding: 3rem 1rem 3.5rem 1rem;
+    @include tablet-only()
+    {
+       padding: 2.5rem 1rem 3rem 1rem; 
+    }
+
     line-height: 1.1;
     &__heading
     {
@@ -179,10 +220,19 @@ input, button
 
 .how-to
 {
-    padding: 3rem 1rem 4rem 1rem;
+   
+    padding: 3rem 2rem 4rem 2rem;
+    @include mobile-only()
+    {
+        padding: 3rem 1rem 4rem 1rem;
+    }
     &__heading
     {
-        margin: 0;
+        margin: 0 0 0 1rem;
+        @include tablet-only()
+        {
+            margin: 0;
+        }
     }
     &__list
     {
@@ -192,7 +242,7 @@ input, button
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        max-width: 1200px;
+        max-width: 1300px;
     }
 }
 
@@ -204,13 +254,17 @@ input, button
     background-color: $lightgray-color;
     box-shadow: 0 5px 10px darken($lightgray-color, 10%);
     border-radius: 20px;
-    margin: 1.5rem 1rem 0 1rem;
     position: relative;
+    margin: 3rem 1rem 4rem 1rem;
+    @include tablet-only()
+    {
+        margin: 2rem 1rem 0 1rem;
+    }
     @include mobile-only()
     {
         margin: 1.5rem 0 0 0;
     }
-    &__number
+    &__position
     {
         width: 25px;
         height: 25px;
@@ -220,6 +274,10 @@ input, button
         border-radius: 13px;
         background-color: $primary-color;
         color: $white-color;
+    }
+    &__number
+    {
+        margin-top: 2px;
     }
     &__icon
     {
@@ -242,11 +300,19 @@ input, button
 
 .preview
 {
-    padding: 3rem 1rem 4rem 1rem;
     background-color: $lightgray-color;
+    padding: 3rem 2rem 4rem 2rem;
+    @include mobile-only()
+    {
+        padding: 3rem 1rem 4rem 1rem;
+    }
     &__heading
     {
-        margin: 0;
+        margin: 0 0 0 1rem;
+        @include tablet-only()
+        {
+            margin: 0;
+        }
     }
     &__list
     {
@@ -254,7 +320,7 @@ input, button
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        max-width: 1000px;
+        max-width: 1100px;
         @include tablet-only()
         {
             max-width: 900px;
@@ -265,26 +331,34 @@ input, button
 .menu
 {
     width: 100%;
-    height: 250px;
-    max-width: 335px;
+    height: 300px;
+    max-width: 400px;
+    @include tablet-only()
+    {
+        height: 250px;
+        max-width: 335px;  
+    }
     background-color: $white-color;
     box-shadow: 0 5px 10px darken($lightgray-color, 10%);
     border-radius: 15px;
-    margin: 3rem;
     overflow: hidden;
     position: relative;
+    margin: 3rem 3rem 4rem 3rem;
     @include tablet-only()
     {
         margin: 3rem 3rem 1rem 3rem;
     }
-
     @include mobile-only()
     {
         margin: 1.5rem 0 0 0;
     }
     &__display
     {
+        height: 220px;
+        @include tablet-only()
+    {
         height: 175px;
+    }
         overflow: hidden;
     }
     &__image
@@ -383,6 +457,25 @@ input, button
         {
             background: linear-gradient(-45deg, $secondary-color, $primary-color);
         }*/
+}
+
+.new-message
+{
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 65px;
+    border-radius: 3px;
+    padding: 0.3rem;
+    background: $tertiary-color;
+    text-align: center;
+    &__text
+    {
+        margin: 0;
+        color: darken($color: $tertiary-color, $amount: 40%);
+        font-size: 14px;
+    }
 }
 
 footer

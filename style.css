@@ -10,6 +10,11 @@ body {
 h1, h2 {
   font-size: 28px;
 }
+@media screen and (max-width: 1200px) {
+  h1, h2 {
+    font-size: 24px;
+  }
+}
 @media screen and (max-width: 600px) {
   h1, h2 {
     font-size: 24px;
@@ -18,6 +23,11 @@ h1, h2 {
 
 h3 {
   font-size: 18px;
+}
+@media screen and (max-width: 1200px) {
+  h3 {
+    font-size: 18px;
+  }
 }
 @media screen and (max-width: 600px) {
   h3 {
@@ -28,6 +38,11 @@ h3 {
 p, input, button {
   font-size: 18px;
 }
+@media screen and (max-width: 1200px) {
+  p, input, button {
+    font-size: 16px;
+  }
+}
 @media screen and (max-width: 600px) {
   p, input, button {
     font-size: 16px;
@@ -37,17 +52,24 @@ p, input, button {
 input, button {
   background: transparent;
   border: none;
+  outline: none;
+}
+
+header {
+  position: relative;
+  box-shadow: 0 1px 5px #aaaaaa;
 }
 
 .header__logo {
   height: 50px;
+  margin: 1.5rem 0 1rem 0;
   object-fit: contain;
   width: 100%;
-  margin: 1rem 0;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
   .header__logo {
     height: 30px;
+    margin: 1rem 0 0.5rem 0;
   }
 }
 
@@ -55,6 +77,15 @@ input, button {
   padding: 1rem 1rem;
   background: #e9e9e9;
   text-align: center;
+  box-shadow: inset 0 3px 5px #e9e9e9;
+}
+.search__form {
+  width: 175px;
+  margin: auto;
+  display: flex;
+}
+.search__label {
+  padding: 0 1rem 0 0;
 }
 .search__text {
   font-family: "Roboto";
@@ -63,16 +94,17 @@ input, button {
 .search__text:focus {
   border: none;
 }
-.search__label {
-  padding: 0 1rem 0 0;
-  vertical-align: top;
-}
 
 .description {
   background-color: #F6F6F6;
   text-align: center;
-  padding: 2.5rem 1rem 3rem 1rem;
+  padding: 3rem 1rem 3.5rem 1rem;
   line-height: 1.1;
+}
+@media screen and (max-width: 1200px) {
+  .description {
+    padding: 2.5rem 1rem 3rem 1rem;
+  }
 }
 .description__heading {
   margin: 0;
@@ -97,10 +129,20 @@ input, button {
 }
 
 .how-to {
-  padding: 3rem 1rem 4rem 1rem;
+  padding: 3rem 2rem 4rem 2rem;
+}
+@media screen and (max-width: 600px) {
+  .how-to {
+    padding: 3rem 1rem 4rem 1rem;
+  }
 }
 .how-to__heading {
-  margin: 0;
+  margin: 0 0 0 1rem;
+}
+@media screen and (max-width: 1200px) {
+  .how-to__heading {
+    margin: 0;
+  }
 }
 .how-to__list {
   margin: auto;
@@ -109,7 +151,7 @@ input, button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-width: 1200px;
+  max-width: 1300px;
 }
 
 .step {
@@ -119,15 +161,20 @@ input, button {
   background-color: #F6F6F6;
   box-shadow: 0 5px 10px #dddddd;
   border-radius: 20px;
-  margin: 1.5rem 1rem 0 1rem;
   position: relative;
+  margin: 3rem 1rem 4rem 1rem;
+}
+@media screen and (max-width: 1200px) {
+  .step {
+    margin: 2rem 1rem 0 1rem;
+  }
 }
 @media screen and (max-width: 600px) {
   .step {
     margin: 1.5rem 0 0 0;
   }
 }
-.step__number {
+.step__position {
   width: 25px;
   height: 25px;
   position: absolute;
@@ -136,6 +183,9 @@ input, button {
   border-radius: 13px;
   background-color: #9356DC;
   color: #fff;
+}
+.step__number {
+  margin-top: 2px;
 }
 .step__icon {
   position: absolute;
@@ -153,18 +203,28 @@ input, button {
 }
 
 .preview {
-  padding: 3rem 1rem 4rem 1rem;
   background-color: #F6F6F6;
+  padding: 3rem 2rem 4rem 2rem;
+}
+@media screen and (max-width: 600px) {
+  .preview {
+    padding: 3rem 1rem 4rem 1rem;
+  }
 }
 .preview__heading {
-  margin: 0;
+  margin: 0 0 0 1rem;
+}
+@media screen and (max-width: 1200px) {
+  .preview__heading {
+    margin: 0;
+  }
 }
 .preview__list {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-width: 1000px;
+  max-width: 1100px;
 }
 @media screen and (max-width: 1200px) {
   .preview__list {
@@ -174,14 +234,20 @@ input, button {
 
 .menu {
   width: 100%;
-  height: 250px;
-  max-width: 335px;
+  height: 300px;
+  max-width: 400px;
   background-color: #fff;
   box-shadow: 0 5px 10px #dddddd;
   border-radius: 15px;
-  margin: 3rem;
   overflow: hidden;
   position: relative;
+  margin: 3rem 3rem 4rem 3rem;
+}
+@media screen and (max-width: 1200px) {
+  .menu {
+    height: 250px;
+    max-width: 335px;
+  }
 }
 @media screen and (max-width: 1200px) {
   .menu {
@@ -194,8 +260,13 @@ input, button {
   }
 }
 .menu__display {
-  height: 175px;
+  height: 220px;
   overflow: hidden;
+}
+@media screen and (max-width: 1200px) {
+  .menu__display {
+    height: 175px;
+  }
 }
 .menu__image {
   width: 100%;
@@ -284,6 +355,23 @@ input, button {
   background: -webkit-linear-gradient(#9356DC 0%, #FF79DA 75%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.new-message {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 65px;
+  border-radius: 3px;
+  padding: 0.3rem;
+  background: #99E2D0;
+  text-align: center;
+}
+.new-message__text {
+  margin: 0;
+  color: #278870;
+  font-size: 14px;
 }
 
 footer {
