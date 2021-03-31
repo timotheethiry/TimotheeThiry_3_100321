@@ -640,18 +640,43 @@ main
 .dish
 {
     width: 100%;
+    max-width: 360px;
+    height: 70px;
     border-radius: 15px;
     margin: 2rem 0 0 0;
+    background-color: $white-color;
+    box-shadow: 0px 1px 10px darken($gray-color, 10%);
+    display: flex;
+    overflow: hidden;
     @include mobile-only() 
     {
         width: 345px;
         margin: 1rem 0 0 0;
     }
-    background-color: $white-color;
-    box-shadow: 0px 1px 10px darken($gray-color, 10%);
     &__text
     {
-        padding: 0.8rem;
+        box-sizing: border-box;
+        width: 360px;
+        min-width: 360px;
+        @include mobile-only()
+        {
+            width: 345px;
+            min-width: 345px;
+        }
+        padding: 12px;
+        transition: all .5s ease-in-out;
+        &:hover
+        {
+            min-width: 300px;
+            @include mobile-only()
+            {
+                min-width: 285px;
+            }
+        }
+        &:hover + div span
+        {
+            transform: rotate(0deg);
+        }
     }
     &__heading
     {
@@ -660,41 +685,53 @@ main
         @include mobile-only()
         {
           font-size: 16px;  
-        }
-        
+        } 
     }
     &__description
     {
+        
         display: flex;
         justify-content: space-between;
-        padding-right: 0.5rem;
     }
     &__details
     {
         margin: 0.2rem 0 0 0;
         font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 0.5rem;
+        font-weight: lighter;
         @include mobile-only()
         {
            font-size: 14px; 
         }
-        font-weight: lighter;
         &--bold
         {
             font-weight: bold;
+            overflow: visible;
         }
     }
     &__order
     {
-        display: none;
-        width: 50px;
+        width: 60px;
+        min-width: 60px;
+        height: 100%;
         background-color: $tertiary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__icon
+    {
+        color: $white-color;
+        background-color: $tertiary-color;
+        transform: rotate(-270deg);
+        transition: all .3s .2s ease;
     }
 }
 
-.fa-check-circle
-{
-    color: $white-color;
-    background-color: $white-color;
-}
+
+   
     
     
