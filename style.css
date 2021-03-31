@@ -527,7 +527,7 @@ main {
   background-color: #fff;
   box-shadow: 0px 1px 10px #d0d0d0;
   display: flex;
-  overflow: visible;
+  overflow: hidden;
 }
 @media screen and (max-width: 600px) {
   .dish {
@@ -538,7 +538,26 @@ main {
 .dish__text {
   box-sizing: border-box;
   width: 360px;
+  min-width: 360px;
   padding: 12px;
+  transition: all 0.5s ease-in-out;
+}
+@media screen and (max-width: 600px) {
+  .dish__text {
+    width: 345px;
+    min-width: 345px;
+  }
+}
+.dish__text:hover {
+  min-width: 300px;
+}
+@media screen and (max-width: 600px) {
+  .dish__text:hover {
+    min-width: 285px;
+  }
+}
+.dish__text:hover + div span {
+  transform: rotate(0deg);
 }
 .dish__heading {
   margin: 0;
@@ -572,18 +591,19 @@ main {
   overflow: visible;
 }
 .dish__order {
-  width: 50px;
+  width: 60px;
+  min-width: 60px;
   height: 100%;
   background-color: #99E2D0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateX(55px);
 }
-
-.fa-check-circle {
+.dish__icon {
   color: #fff;
   background-color: #99E2D0;
+  transform: rotate(-270deg);
+  transition: all 0.3s 0.2s ease;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -647,7 +647,7 @@ main
     background-color: $white-color;
     box-shadow: 0px 1px 10px darken($gray-color, 10%);
     display: flex;
-    overflow: visible;
+    overflow: hidden;
     @include mobile-only() 
     {
         width: 345px;
@@ -657,7 +657,26 @@ main
     {
         box-sizing: border-box;
         width: 360px;
+        min-width: 360px;
+        @include mobile-only()
+        {
+            width: 345px;
+            min-width: 345px;
+        }
         padding: 12px;
+        transition: all .5s ease-in-out;
+        &:hover
+        {
+            min-width: 300px;
+            @include mobile-only()
+            {
+                min-width: 285px;
+            }
+        }
+        &:hover + div span
+        {
+            transform: rotate(0deg);
+        }
     }
     &__heading
     {
@@ -666,8 +685,7 @@ main
         @include mobile-only()
         {
           font-size: 16px;  
-        }
-        
+        } 
     }
     &__description
     {
@@ -683,11 +701,11 @@ main
         overflow: hidden;
         text-overflow: ellipsis;
         margin-right: 0.5rem;
+        font-weight: lighter;
         @include mobile-only()
         {
            font-size: 14px; 
         }
-        font-weight: lighter;
         &--bold
         {
             font-weight: bold;
@@ -696,20 +714,24 @@ main
     }
     &__order
     {
-        width: 50px;
+        width: 60px;
+        min-width: 60px;
         height: 100%;
         background-color: $tertiary-color;
-        display: none;
+        display: flex;
         justify-content: center;
         align-items: center;
-        transform: translateX(55px);
+    }
+    &__icon
+    {
+        color: $white-color;
+        background-color: $tertiary-color;
+        transform: rotate(-270deg);
+        transition: all .3s .2s ease;
     }
 }
 
-.fa-check-circle
-{
-    color: $white-color;
-    background-color: $tertiary-color;
-}
+
+   
     
     
