@@ -520,10 +520,14 @@ main {
 
 .dish {
   width: 100%;
+  max-width: 360px;
+  height: 70px;
   border-radius: 15px;
   margin: 2rem 0 0 0;
   background-color: #fff;
   box-shadow: 0px 1px 10px #d0d0d0;
+  display: flex;
+  overflow: visible;
 }
 @media screen and (max-width: 600px) {
   .dish {
@@ -532,7 +536,9 @@ main {
   }
 }
 .dish__text {
-  padding: 0.8rem;
+  box-sizing: border-box;
+  width: 360px;
+  padding: 12px;
 }
 .dish__heading {
   margin: 0;
@@ -546,11 +552,14 @@ main {
 .dish__description {
   display: flex;
   justify-content: space-between;
-  padding-right: 0.5rem;
 }
 .dish__details {
   margin: 0.2rem 0 0 0;
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0.5rem;
   font-weight: lighter;
 }
 @media screen and (max-width: 600px) {
@@ -560,16 +569,21 @@ main {
 }
 .dish__details--bold {
   font-weight: bold;
+  overflow: visible;
 }
 .dish__order {
-  display: none;
   width: 50px;
+  height: 100%;
   background-color: #99E2D0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(55px);
 }
 
 .fa-check-circle {
   color: #fff;
-  background-color: #fff;
+  background-color: #99E2D0;
 }
 
 /*# sourceMappingURL=style.css.map */
