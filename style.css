@@ -81,12 +81,17 @@ header {
   right: 0;
   bottom: 0;
   font-size: 30px;
+  width: 27px;
+  height: 30px;
+  color: #000;
 }
 @media screen and (max-width: 1200px) {
   .header__icon {
     top: 18px;
     left: 30px;
     font-size: 24px;
+    width: 21px;
+    height: 24px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -94,6 +99,8 @@ header {
     top: 19px;
     left: 16px;
     font-size: 20px;
+    width: 17.5px;
+    height: 20px;
   }
 }
 .header--normal {
@@ -432,7 +439,15 @@ main {
 .container__icon {
   content: "";
   position: absolute;
-  padding: 3rem 2rem 0 0;
+  top: 3.4rem;
+  left: 20rem;
+}
+@media screen and (max-width: 600px) {
+  .container__icon {
+    top: 2.4rem;
+    right: 2rem;
+    left: unset;
+  }
 }
 .container__list {
   max-width: 100%;

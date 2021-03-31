@@ -5,6 +5,7 @@ $secondary-color: #FF79DA;
 $tertiary-color: #99E2D0;
 $lightgray-color: #F6F6F6;
 $white-color: #fff;
+$black-color: #000;
 $gray-color: darken($lightgray-color, 5%);
 $darkgray-color: darken($lightgray-color, 71%);
 
@@ -159,17 +160,24 @@ header
         right: 0;
         bottom: 0;
         font-size: 30px;
+        width: 27px;
+        height: 30px;
+        color: $black-color;
         @include tablet-only()
         {
             top: 18px;
             left: 30px;
             font-size: 24px;
+            width: 21px;
+            height: 24px;
         }
         @include mobile-only()
         {
             top: 19px;
             left: 16px;
             font-size: 20px;
+            width: 17.5px;
+            height: 20px;
         }
     }
     &--normal
@@ -498,6 +506,8 @@ span+li
     padding-left: 1.5rem;
 }
 
+
+
 // Menu-page Specific
 
 .hero
@@ -547,7 +557,15 @@ main
     {
         content:"";
         position: absolute;
-        padding: 3rem 2rem 0 0;
+        top: 3.4rem;
+        left: 20rem;
+        @include mobile-only()
+        {
+            top: 2.4rem;
+            right: 2rem;
+            left: unset;
+        }
+        
     }
     &__list
     {
