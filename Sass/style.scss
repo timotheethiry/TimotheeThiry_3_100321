@@ -138,25 +138,13 @@ input, button
 
 header
 {
-    position: relative; // show box-shadow on home page and back button on menu page
+    position: relative; // show box-shadow on home page and back button on restaurant page
     background-color: $white-color;
     box-shadow: 0 1px 5px darken($gray-color, 25%);
 }
 
 .header
 {
-    &__logo
-    {
-        height: 50px;
-        margin: 1.5rem 0 1rem 0;
-        @include tablet-only
-        {
-            height: 30px;
-            margin: 1rem 0 0.5rem 0;
-        }
-        object-fit: contain;
-        width: 100%;
-    }
     &__heading
     {
         font-family: 'Shrikhand', sans-serif;
@@ -170,7 +158,7 @@ header
             font-size: 30px;
         }
     }
-    &__icon // menu-page
+    &__icon // arrow shaped back button on the restaurant pages  
     {
         content: "";
         position: absolute;
@@ -199,7 +187,7 @@ header
             height: 20px;
         }
     }
-    &--normal
+    &--normal /* disable header box shadow on restaurant page */
     {
         box-shadow: none;
     }
@@ -254,18 +242,39 @@ header
         font-size: 18px;
         margin: 1rem 0 2rem 0;
     }
-    &__button
+    &__button /* two background layers with opacity animation to optimize browser computation */
     {
         padding: 1rem 1.5rem;
         border-radius: 25px;
         background: linear-gradient(170deg, $secondary-color, $primary-color);
         box-shadow: 0 5px 7px darken($gray-color, 15%);
-        color: $white-color;
+        transition: box-shadow 0.3s ease-in;
         font-family: 'Roboto'; // to refactor
-        &:active
+        color: $white-color;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:active 
         {
-            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
             box-shadow: 0 5px 7px darken($gray-color, 25%);
+            & .description__button--animated
+            {
+               opacity: 1; 
+            } 
+        }
+        &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: -1;
+            
         }
     }
 }
@@ -298,9 +307,10 @@ header
     }
 }
 
-.step
+.step /* two background layers with opacity animation to optimize browser computation */
 {
-    position: relative;
+    position: relative; /* to position the icons, numbers and background layer for step */
+    z-index: 1;
     width: 100%;
     height: 80px;
     max-width: 335px;
@@ -326,6 +336,7 @@ header
         border-radius: 13px;
         background-color: $primary-color;
         color: $white-color;
+        z-index: 1;
     }
     &__number
     {
@@ -335,6 +346,7 @@ header
     &__icon
     {
         position: absolute;
+        z-index: 1;
         left: 2.5rem;
         top: 32px;
         font-size: 18px; // (step height - font-size) / 2
@@ -342,12 +354,29 @@ header
     }
     &:active
     {
-        background-color: lighten($primary-color, 35%);
         box-shadow: 0 5px 10px darken($lightgray-color, 20%);
+        & .step--animated
+        {
+            opacity: 1;
+        }
         .step__icon
         {
             color: lighten($primary-color, 5%);
         }
+    }
+    &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        background-color: lighten($primary-color, 35%);
+        opacity: 0;
+        transition: opacity 0.2s;
+        z-index: -1;
     }
 }
 
@@ -395,7 +424,7 @@ header
     box-shadow: 0 5px 10px darken($lightgray-color, 10%);
     border-radius: 15px;
     overflow: hidden;
-    position: relative;
+    position: relative; /* to position the new restaurant sign */
     margin: 3rem 3rem 4rem 3rem;
     @include tablet-only()
     {
@@ -443,7 +472,7 @@ header
     }
 }
 
-.fa-heart // inside .menu__like
+.fa-heart // inside .menu__like, position a small heart over a bigger one to mimic a border
 {
     display: inline-block;
     color: $darkgray-color;
@@ -462,7 +491,7 @@ header
         right: 0;
         bottom: 0;
     }
-    &:active
+    &:active /* background-color animation to optimise with good practice */
     {
         background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
         -webkit-background-clip: text;
@@ -470,7 +499,7 @@ header
     }
 }
 
-.new-message // sign for new menus
+.new-message // sign for new restaurant
 {
     content: "";
     position: absolute;
@@ -493,7 +522,7 @@ footer
 {
     padding: 1.5rem;
     background: $darkgray-color;
-    position: relative;
+    position: relative; /* to position the footer icons */
     & ul
     {
         list-style: none;
@@ -502,7 +531,7 @@ footer
         font-size: 14px;
         color: $white-color;
         line-height: 1.6;
-        & li:first-of-type
+        & li:first-of-type /* make room for the footer icons */
         {
             padding-left: 1.5rem;
             & + li
@@ -515,12 +544,6 @@ footer
 
 .footer
 {
-    &__logo
-    {
-        height: 18px;
-        filter: invert(100%);
-        -webkit-filter: invert(100%);
-    }
     &__heading
     {
         font-family: 'Shrikhand', sans-serif;
@@ -547,7 +570,7 @@ footer
 
 
 
-// Menu-page Specific
+// restaurant page specific style
 
 .hero
 {
@@ -567,7 +590,7 @@ footer
 
 main
 {
-    background-color: $lightgray-color;
+    background-color: $lightgray-color; /* to compensate for container translation */
 }
 
 .container
@@ -575,7 +598,7 @@ main
     border-radius: 35px 35px 0 0;
     background-color: $lightgray-color;
     transform: translateY(-55px);
-    position: relative;
+    position: relative; /* to position the heart icon on restaurant page */
     padding: 3rem;
     @include tablet-only()
     {
@@ -593,7 +616,7 @@ main
         font-size: 28px;
         font-weight: 500;
     }
-    &__icon
+    &__icon /* heart icon */
     {
         content:"";
         position: absolute;
@@ -620,27 +643,49 @@ main
         align-items: flex-start;
         flex-wrap: wrap;
     }
-    &__button
+    &__button /* two background layers with opacity animation to optimize browser computation */
     {
         margin: 3rem auto 0 auto;
         padding: 1rem 1.5rem;
         width: 180px;
         height: 50px;
         border-radius: 25px;
-        background: linear-gradient(170deg, $secondary-color, $primary-color);
-        box-shadow: 0 5px 7px darken($gray-color, 15%);
-        color: $white-color;
         font-family: 'Roboto'; // to refactor
         font-size: 16px;
         @include mobile-only()
         {
             font-size: 14px;
         }
-        &:active
+        color: $white-color;
+        background: linear-gradient(170deg, $secondary-color, $primary-color);
+        box-shadow: 0 5px 7px darken($gray-color, 15%);
+        transition: box-shadow 0.3s ease-in;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:active 
         {
-            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
             box-shadow: 0 5px 7px darken($gray-color, 25%);
+            & .container__button--animated
+            {
+               opacity: 1; 
+            } 
         }
+        &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: -1;
+            
+        }
+        
     }
 }
 
@@ -670,7 +715,7 @@ main
         }
         font-weight: lighter;
         position: relative;
-        &::after // decorative line
+        &::after // heading decorative line
         {
             content: "";
             position: absolute;
@@ -681,14 +726,22 @@ main
             left: 0;
         }
     }
-    &__list
+    &__list /* appearance with opacity and transform translate, to trigger when page is loaded */
     {
         margin: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 1s ease-in-out;
+        &:hover
+        {
+            opacity: 1;
+            transform: translateY(0px);
+        }
     }
-    &--order
+    &--order /* order button centering */
     {
         width: 400px;
         margin-top: 0;
@@ -696,7 +749,7 @@ main
     }
 }
 
-.dish
+.dish /* on click the text make room for a check mark to appear */
 {
     width: 100%;
     max-width: 360px;
@@ -705,14 +758,14 @@ main
     margin: 2rem 0 0 0;
     background-color: $white-color;
     box-shadow: 0px 1px 10px darken($gray-color, 10%);
-    display: flex;
+    display: flex; /* use flexbox and overflow to force the check mark out of the block */
     overflow: hidden;
     @include mobile-only() 
     {
         width: 345px;
         margin: 1rem 0 0 0;
     }
-    &__text
+    &__text /* text block take all the width to force the check mark out of the block */
     {
         box-sizing: border-box;
         width: 360px;
@@ -724,18 +777,6 @@ main
         }
         padding: 12px;
         transition: all .5s ease-in-out;
-        &:hover
-        {
-            min-width: 300px;
-            @include mobile-only()
-            {
-                min-width: 285px;
-            }
-        }
-        &:hover + div span
-        {
-            transform: rotate(0deg);
-        }
     }
     &__heading
     {
@@ -752,7 +793,7 @@ main
         display: flex;
         justify-content: space-between;
     }
-    &__details
+    &__details 
     {
         margin: 0.2rem 0 0 0;
         font-size: 16px;
@@ -781,12 +822,27 @@ main
         justify-content: center;
         align-items: center;
     }
-    &__icon
+    &__icon /* secondary action to make the check mark rotate when appearing */
     {
         color: $white-color;
         background-color: $tertiary-color;
         transform: rotate(-270deg);
         transition: all .3s .2s ease;
+    }
+    &:active
+    {
+        & .dish__text
+        {
+            min-width: 300px;
+        @include mobile-only()
+        {
+            min-width: 285px;
+        }
+        }
+        & .dish__icon
+        {
+            transform: rotate(0deg);
+        } 
     }
 }
 
