@@ -66,6 +66,12 @@ $font-size-list:
         url(./fonts/Roboto-Black.ttf) format('truetype');
 }
 
+@font-face
+{
+    font-family: 'Shrikhand';
+    src: url(./fonts/Shrikhand-Regular.ttf) format('truetype');
+}
+
 body
 {
     margin: 0;
@@ -150,6 +156,19 @@ header
         }
         object-fit: contain;
         width: 100%;
+    }
+    &__heading
+    {
+        font-family: 'Shrikhand', sans-serif;
+        font-size: 50px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+        @include tablet-only
+        {
+            font-size: 30px;
+        }
     }
     &__icon // menu-page
     {
@@ -473,6 +492,24 @@ footer
 {
     padding: 1.5rem;
     background: $darkgray-color;
+    position: relative;
+    & ul
+    {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: $white-color;
+        line-height: 1.6;
+        & li:first-of-type
+        {
+            padding-left: 1.5rem;
+            & + li
+            {
+                padding-left: 1.5rem;
+            }
+        }
+    }
 }
 
 .footer
@@ -483,27 +520,28 @@ footer
         filter: invert(100%);
         -webkit-filter: invert(100%);
     }
+    &__heading
+    {
+        font-family: 'Shrikhand', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+        color: $white-color;
+    }
     &__icon
     {
-        float: left; // to make li padding start from the sideline 
+        content: "";
+        position: absolute;
+        top: 5.4rem;
+        left: 1.5rem;
         font-size: 12px;
         transform: translateY(4px);
+        color: $white-color;
+        &:first-of-type
+        {
+            top: 4rem;
+        }
     }
-}
-
-footer ul
-{
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;
-    font-size: 14px;
-    color: $white-color;
-    line-height: 1.6;
-}
-
-span+li
-{
-    padding-left: 1.5rem;
 }
 
 
@@ -548,10 +586,11 @@ main
     }
     &__heading
     {
-        font-family: 'Roboto'; // change with shringummy
         margin: 0;
         width: 100%;
+        font-family: 'Shrikhand';
         font-size: 28px;
+        font-weight: 500;
     }
     &__icon
     {
@@ -577,7 +616,7 @@ main
         margin: auto;
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
     }
     &__button
@@ -652,6 +691,7 @@ main
     {
         width: 400px;
         margin-top: 0;
+        align-self: center;
     }
 }
 
@@ -659,7 +699,7 @@ main
 {
     width: 100%;
     max-width: 360px;
-    height: 70px;
+    min-height: 70px;
     border-radius: 15px;
     margin: 2rem 0 0 0;
     background-color: $white-color;

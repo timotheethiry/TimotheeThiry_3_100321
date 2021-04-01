@@ -2,6 +2,10 @@
   font-family: "Roboto";
   src: url(./fonts/Roboto-Regular.ttf) format("truetype"), url(./fonts/Roboto-Bold.ttf) format("truetype"), url(./fonts/Roboto-Light.ttf) format("truetype"), url(./fonts/Roboto-Black.ttf) format("truetype");
 }
+@font-face {
+  font-family: "Shrikhand";
+  src: url(./fonts/Shrikhand-Regular.ttf) format("truetype");
+}
 body {
   margin: 0;
   font-family: "Roboto";
@@ -71,6 +75,19 @@ header {
   .header__logo {
     height: 30px;
     margin: 1rem 0 0.5rem 0;
+  }
+}
+.header__heading {
+  font-family: "Shrikhand", sans-serif;
+  font-size: 50px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+@media screen and (max-width: 1200px) {
+  .header__heading {
+    font-size: 30px;
   }
 }
 .header__icon {
@@ -369,19 +386,8 @@ header {
 footer {
   padding: 1.5rem;
   background: #414141;
+  position: relative;
 }
-
-.footer__logo {
-  height: 18px;
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-.footer__icon {
-  float: left;
-  font-size: 12px;
-  transform: translateY(4px);
-}
-
 footer ul {
   list-style: none;
   padding-left: 0;
@@ -390,9 +396,36 @@ footer ul {
   color: #fff;
   line-height: 1.6;
 }
-
-span + li {
+footer ul li:first-of-type {
   padding-left: 1.5rem;
+}
+footer ul li:first-of-type + li {
+  padding-left: 1.5rem;
+}
+
+.footer__logo {
+  height: 18px;
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+.footer__heading {
+  font-family: "Shrikhand", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: #fff;
+}
+.footer__icon {
+  content: "";
+  position: absolute;
+  top: 5.4rem;
+  left: 1.5rem;
+  font-size: 12px;
+  transform: translateY(4px);
+  color: #fff;
+}
+.footer__icon:first-of-type {
+  top: 4rem;
 }
 
 .hero {
@@ -431,10 +464,11 @@ main {
   }
 }
 .container__heading {
-  font-family: "Roboto";
   margin: 0;
   width: 100%;
+  font-family: "Shrikhand";
   font-size: 28px;
+  font-weight: 500;
 }
 .container__icon {
   content: "";
@@ -454,7 +488,7 @@ main {
   margin: auto;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 @media screen and (max-width: 1200px) {
@@ -531,12 +565,13 @@ main {
 .meal--order {
   width: 400px;
   margin-top: 0;
+  align-self: center;
 }
 
 .dish {
   width: 100%;
   max-width: 360px;
-  height: 70px;
+  min-height: 70px;
   border-radius: 15px;
   margin: 2rem 0 0 0;
   background-color: #fff;
