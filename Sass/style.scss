@@ -321,7 +321,7 @@ header
         width: 25px;
         height: 25px;
         position: absolute;
-        top: 30px; // (step height - number height) / 2
+        top: 30px;
         left: -10px;
         border-radius: 13px;
         background-color: $primary-color;
@@ -329,7 +329,8 @@ header
     }
     &__number
     {
-        margin-top: 2px;
+        display: inline-block;
+        margin-top: 1px;
     }
     &__icon
     {

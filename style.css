@@ -236,7 +236,8 @@ header {
   color: #fff;
 }
 .step__number {
-  margin-top: 2px;
+  display: inline-block;
+  margin-top: 1px;
 }
 .step__icon {
   position: absolute;
