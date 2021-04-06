@@ -63,6 +63,78 @@ p, input, button {
   }
 }
 
+body {
+  position: relative;
+}
+
+.loading-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 2;
+  animation: fade-out 1.9s 3.1s ease-out forwards;
+}
+
+.loader {
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: solid 12px transparent;
+  border-right-color: #99E2D0;
+  border-top-color: #99E2D0;
+  position: fixed;
+  left: calc(50% - 150px);
+  top: calc(50% - 150px);
+  z-index: 2;
+  animation: spinner 3s linear, fade-out 0.5s 2.5s ease-out forwards;
+}
+.loader::before {
+  box-sizing: border-box;
+  width: 272px;
+  height: 272px;
+  border-radius: 50%;
+  border: solid 14px transparent;
+  border-right-color: #FF79DA;
+  border-top-color: #FF79DA;
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  animation: spinner 3s linear, fade-out 0.5s 2.5s ease-out forwards;
+}
+.loader::after {
+  box-sizing: border-box;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: solid 16px transparent;
+  border-right-color: #9356DC;
+  border-top-color: #9356DC;
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  animation: spinner 3s ease-in-out, fade-out 0.5s 2.5s ease-out forwards;
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fade-out {
+  80%, 100% {
+    opacity: 0;
+    z-index: 2;
+  }
+  100% {
+    z-index: -1;
+  }
+}
 input, button {
   background: transparent;
   border: none;
@@ -388,8 +460,7 @@ header {
   padding: 1rem 1rem 0 0;
   margin: 0.3rem 0.5rem 0 0;
 }
-
-.fa-heart {
+.menu__icon {
   display: inline-block;
   color: #414141;
   font-size: 22px;
@@ -398,7 +469,7 @@ header {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-.fa-heart--small {
+.menu__icon--small {
   content: "";
   position: absolute;
   font-size: 20px;
@@ -409,12 +480,40 @@ header {
   right: 0;
   bottom: 0;
 }
-.fa-heart:active {
+.menu__icon:active {
   background: -webkit-linear-gradient(#9356DC 0%, #FF79DA 75%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/*.fa-heart // inside .menu__like, position a small heart over a bigger one to mimic a border
+{
+    display: inline-block;
+    color: $darkgray-color;
+    font-size: 22px;
+    padding: 0 0.1rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &--small
+    {
+        content: "";
+        position: absolute;
+        font-size: 20px;
+        color: $white-color;
+        padding: 0;
+        top: 1px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &:active background-color animation to optimise with good practice
+    {
+        background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}*/
 .new-message {
   content: "";
   position: absolute;
@@ -529,13 +628,19 @@ main {
 }
 .container__icon {
   content: "";
+  font-size: 22px;
   position: absolute;
-  top: 3.4rem;
-  left: 20rem;
+  top: 3.5rem;
+  left: 21rem;
+}
+@media screen and (max-width: 1200px) {
+  .container__icon {
+    left: 20rem;
+  }
 }
 @media screen and (max-width: 600px) {
   .container__icon {
-    top: 2.4rem;
+    top: 2.5rem;
     right: 2rem;
     left: unset;
   }
