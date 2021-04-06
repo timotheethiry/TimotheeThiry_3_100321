@@ -55,6 +55,22 @@ $font-size-list:
     }
 };
 
+// Components
+
+@keyframes fadein-menu
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100%
+    {
+        opacity: 1;
+        transform: translateY(0px);
+    }        
+}
+
 // Typography
 
 @font-face
@@ -254,12 +270,12 @@ header
         position: relative;
         z-index: 1;
         overflow: hidden;
-        &:active 
+        &:hover 
         {
             box-shadow: 0 5px 7px darken($gray-color, 25%);
             & .description__button--animated
             {
-               opacity: 1; 
+               opacity: 1;
             } 
         }
         &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
@@ -317,6 +333,7 @@ header
     border-radius: 20px;
     background-color: $lightgray-color;
     box-shadow: 0 5px 10px darken($lightgray-color, 10%);
+    transition: box-shadow 0.3s ease-in;
     margin: 3rem 1rem 4rem 1rem;
     @include tablet-only()
     {
@@ -352,7 +369,7 @@ header
         font-size: 18px; // (step height - font-size) / 2
         color: darken($gray-color, 40%);
     }
-    &:active
+    &:hover
     {
         box-shadow: 0 5px 10px darken($lightgray-color, 20%);
         & .step--animated
@@ -434,6 +451,14 @@ header
     {
         margin: 1.5rem 0 0 0;
     }
+    &__link // ancor separated from the clickable heart
+    {
+        color: $black-color;
+        text-decoration: none;
+        width: 100%;
+        margin-right: 2rem; //separation with the heart icon
+
+    }
     &__display
     {
         height: 220px;
@@ -442,6 +467,7 @@ header
             height: 175px;
         }
         overflow: hidden;
+        cursor: pointer;
     }
     &__image
     {
@@ -452,7 +478,10 @@ header
     {
         display: flex;
         justify-content: space-between;
-        padding: 1rem 1rem 0 0.8rem;
+    }
+    &__text
+    {
+        padding: 1rem 0 0 0.8rem;
     }
     &__name
     {
@@ -467,7 +496,7 @@ header
         height: max-content;
         width: max-content;
         display: inline-block;
-        padding: 0;
+        padding: 1rem 1rem 0 0;
         margin: 0.3rem 0.5rem 0 0;
     }
 }
@@ -479,6 +508,8 @@ header
     font-size: 22px;
     padding: 0 0.1rem;
     position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
     &--small
     {
         content: "";
@@ -494,6 +525,7 @@ header
     &:active /* background-color animation to optimise with good practice */
     {
         background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -565,6 +597,11 @@ footer
         {
             top: 4rem;
         }
+    }
+    &__mail
+    {
+        color: $white-color;
+        text-decoration: none;
     }
 }
 
@@ -663,7 +700,7 @@ main
         position: relative;
         z-index: 1;
         overflow: hidden;
-        &:active 
+        &:hover 
         {
             box-shadow: 0 5px 7px darken($gray-color, 25%);
             & .container__button--animated
@@ -733,13 +770,11 @@ main
         flex-wrap: wrap;
         justify-content: center;
         opacity: 0;
-        transform: translateY(10px);
-        transition: all 1s ease-in-out;
-        &:hover
-        {
-            opacity: 1;
-            transform: translateY(0px);
-        }
+        animation-name: fadein-menu;
+        animation-duration: 1s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+
     }
     &--order /* order button centering */
     {
@@ -760,6 +795,7 @@ main
     box-shadow: 0px 1px 10px darken($gray-color, 10%);
     display: flex; /* use flexbox and overflow to force the check mark out of the block */
     overflow: hidden;
+    cursor: pointer;
     @include mobile-only() 
     {
         width: 345px;
@@ -776,7 +812,7 @@ main
             min-width: 345px;
         }
         padding: 12px;
-        transition: all .5s ease-in-out;
+        transition: all 0.5s ease-in-out;
     }
     &__heading
     {
@@ -826,27 +862,66 @@ main
     {
         color: $white-color;
         background-color: $tertiary-color;
-        transform: rotate(-270deg);
-        transition: all .3s .2s ease;
     }
     &:active
     {
         & .dish__text
         {
             min-width: 300px;
-        @include mobile-only()
-        {
-            min-width: 285px;
-        }
+            @include mobile-only()
+            {
+                min-width: 285px;
+            }
+            /*animation: dish-text .5s ease-in-out forwards;*/
         }
         & .dish__icon
         {
-            transform: rotate(0deg);
+            animation: dish-icon .3s ease .2s forwards;
         } 
     }
 }
 
+@keyframes dish-icon
+{
+    from
+    {
+        transform: rotate(-270deg);
+    }
+    to
+    {
+        transform: rotate(0deg);
+    }
+}
 
-   
+/*@keyframes dish-text
+{
+    0%
+    {
+        width: 360px;
+        min-width: 360px;
+    }
+    100%
+    {
+        width: 300px;
+        min-width: 300px;
+    }
+}
     
-    
+@include mobile-only()
+{
+    @keyframes dish-text
+    {
+        0%
+        {
+            width: 345px;
+            min-width: 345px;
+        }
+        100%
+        {
+            width: 285px;
+            min-width: 285px;
+        }
+    }
+}*/
+
+
