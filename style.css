@@ -411,7 +411,6 @@ header {
 }
 .fa-heart:active {
   background: -webkit-linear-gradient(#9356DC 0%, #FF79DA 75%);
-  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -480,6 +479,12 @@ footer ul li:first-of-type + li {
 
 .hero {
   overflow: hidden;
+  max-height: 400px;
+}
+@media screen and (max-width: 600px) {
+  .hero {
+    max-height: 350px;
+  }
 }
 .hero__image {
   width: 100%;
@@ -500,7 +505,6 @@ main {
 .container {
   border-radius: 35px 35px 0 0;
   background-color: #F6F6F6;
-  transform: translateY(-55px);
   position: relative;
   /* to position the heart icon on restaurant page */
   padding: 3rem;
@@ -513,6 +517,7 @@ main {
 @media screen and (max-width: 600px) {
   .container {
     padding: 2rem 1rem 1.5rem 1rem;
+    transform: translateY(-55px);
   }
 }
 .container__heading {

@@ -525,7 +525,6 @@ header
     &:active /* background-color animation to optimise with good practice */
     {
         background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
-        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -612,6 +611,11 @@ footer
 .hero
 {
     overflow: hidden;
+    max-height: 400px;
+    @include mobile-only()
+    {
+        max-height: 350px;
+    }
     &__image
     {
         width: 100%;
@@ -634,7 +638,6 @@ main
 {
     border-radius: 35px 35px 0 0;
     background-color: $lightgray-color;
-    transform: translateY(-55px);
     position: relative; /* to position the heart icon on restaurant page */
     padding: 3rem;
     @include tablet-only()
@@ -644,6 +647,7 @@ main
     @include mobile-only()
     {
         padding: 2rem 1rem 1.5rem 1rem;
+        transform: translateY(-55px);
     }
     &__heading
     {
