@@ -1,3 +1,13 @@
+@keyframes fadein-menu {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 @font-face {
   font-family: "Roboto";
   src: url(./fonts/Roboto-Regular.ttf) format("truetype"), url(./fonts/Roboto-Bold.ttf) format("truetype"), url(./fonts/Roboto-Light.ttf) format("truetype"), url(./fonts/Roboto-Black.ttf) format("truetype");
@@ -166,10 +176,10 @@ header {
   z-index: 1;
   overflow: hidden;
 }
-.description__button:active {
+.description__button:hover {
   box-shadow: 0 5px 7px #aaaaaa;
 }
-.description__button:active .description__button--animated {
+.description__button:hover .description__button--animated {
   opacity: 1;
 }
 .description__button--animated {
@@ -221,6 +231,7 @@ header {
   border-radius: 20px;
   background-color: #F6F6F6;
   box-shadow: 0 5px 10px #dddddd;
+  transition: box-shadow 0.3s ease-in;
   margin: 3rem 1rem 4rem 1rem;
 }
 @media screen and (max-width: 1200px) {
@@ -256,13 +267,13 @@ header {
   font-size: 18px;
   color: #838383;
 }
-.step:active {
+.step:hover {
   box-shadow: 0 5px 10px #c3c3c3;
 }
-.step:active .step--animated {
+.step:hover .step--animated {
   opacity: 1;
 }
-.step:active .step__icon {
+.step:hover .step__icon {
   color: #a16be0;
 }
 .step--animated {
@@ -337,9 +348,16 @@ header {
     margin: 1.5rem 0 0 0;
   }
 }
+.menu__link {
+  color: #000;
+  text-decoration: none;
+  width: 100%;
+  margin-right: 2rem;
+}
 .menu__display {
   height: 220px;
   overflow: hidden;
+  cursor: pointer;
 }
 @media screen and (max-width: 1200px) {
   .menu__display {
@@ -353,7 +371,9 @@ header {
 .menu__bottom {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem 0 0.8rem;
+}
+.menu__text {
+  padding: 1rem 0 0 0.8rem;
 }
 .menu__name {
   margin: 0;
@@ -365,7 +385,7 @@ header {
   height: max-content;
   width: max-content;
   display: inline-block;
-  padding: 0;
+  padding: 1rem 1rem 0 0;
   margin: 0.3rem 0.5rem 0 0;
 }
 
@@ -375,6 +395,8 @@ header {
   font-size: 22px;
   padding: 0 0.1rem;
   position: relative;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .fa-heart--small {
   content: "";
@@ -389,6 +411,7 @@ header {
 }
 .fa-heart:active {
   background: -webkit-linear-gradient(#9356DC 0%, #FF79DA 75%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -449,6 +472,10 @@ footer ul li:first-of-type + li {
 }
 .footer__icon:first-of-type {
   top: 4rem;
+}
+.footer__mail {
+  color: #fff;
+  text-decoration: none;
 }
 
 .hero {
@@ -542,10 +569,10 @@ main {
     font-size: 14px;
   }
 }
-.container__button:active {
+.container__button:hover {
   box-shadow: 0 5px 7px #aaaaaa;
 }
-.container__button:active .container__button--animated {
+.container__button:hover .container__button--animated {
   opacity: 1;
 }
 .container__button--animated {
@@ -605,12 +632,10 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 1s ease-in-out;
-}
-.meal__list:hover {
-  opacity: 1;
-  transform: translateY(0px);
+  animation-name: fadein-menu;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 .meal--order {
   width: 400px;
@@ -629,6 +654,7 @@ main {
   display: flex;
   /* use flexbox and overflow to force the check mark out of the block */
   overflow: hidden;
+  cursor: pointer;
 }
 @media screen and (max-width: 600px) {
   .dish {
@@ -692,11 +718,10 @@ main {
 .dish__icon {
   color: #fff;
   background-color: #99E2D0;
-  transform: rotate(-270deg);
-  transition: all 0.3s 0.2s ease;
 }
 .dish:active .dish__text {
   min-width: 300px;
+  /*animation: dish-text .5s ease-in-out forwards;*/
 }
 @media screen and (max-width: 600px) {
   .dish:active .dish__text {
@@ -704,7 +729,46 @@ main {
   }
 }
 .dish:active .dish__icon {
-  transform: rotate(0deg);
+  animation: dish-icon 0.3s ease 0.2s forwards;
 }
+
+@keyframes dish-icon {
+  from {
+    transform: rotate(-270deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+/*@keyframes dish-text
+{
+    0%
+    {
+        width: 360px;
+        min-width: 360px;
+    }
+    100%
+    {
+        width: 300px;
+        min-width: 300px;
+    }
+}
+
+@include mobile-only()
+{
+    @keyframes dish-text
+    {
+        0%
+        {
+            width: 345px;
+            min-width: 345px;
+        }
+        100%
+        {
+            width: 285px;
+            min-width: 285px;
+        }
+    }
+}*/
 
 /*# sourceMappingURL=style.css.map */
