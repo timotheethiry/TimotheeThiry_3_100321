@@ -1,0 +1,1047 @@
+// Variables
+
+$primary-color: #9356DC;
+$secondary-color: #FF79DA;
+$tertiary-color: #99E2D0;
+$lightgray-color: #F6F6F6;
+$white-color: #fff;
+$black-color: #000;
+$gray-color: darken($lightgray-color, 5%);
+$darkgray-color: darken($lightgray-color, 71%);
+
+// Maps
+
+$breakpoints: 
+(
+    mobile: 600px,
+    tablet: 1200px
+);
+
+$font-size-list:
+(
+    mobile:
+    (
+        section-heading: 24px,
+        card-heading: 18px,
+        text: 16px,
+    ),
+    tablet:
+    (
+        section-heading: 24px,
+        card-heading: 18px,
+        text: 16px,
+    ),
+    desktop:
+    (
+        section-heading: 28px,
+        card-heading: 18px,
+        text: 18px,
+    )
+);
+
+// Mixins
+
+@mixin mobile-only
+{
+    @media screen and (max-width: map-get($breakpoints, mobile)) {
+        @content;
+    }
+};
+
+@mixin tablet-only
+{
+    @media screen and (max-width: map-get($breakpoints, tablet)) {
+        @content;
+    }
+};
+
+// Components
+
+@keyframes fadein-menu
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100%
+    {
+        opacity: 1;
+        transform: translateY(0px);
+    }        
+}
+
+// Typography
+
+@font-face
+{
+    font-family: 'Roboto';
+    src: url(./fonts/Roboto-Regular.ttf) format('truetype'),
+        url(./fonts/Roboto-Bold.ttf) format('truetype'),
+        url(./fonts/Roboto-Light.ttf) format('truetype'),
+        url(./fonts/Roboto-Black.ttf) format('truetype');
+}
+
+@font-face
+{
+    font-family: 'Shrikhand';
+    src: url(./fonts/Shrikhand-Regular.ttf) format('truetype');
+}
+
+body
+{
+    margin: 0;
+    font-family: 'Roboto';   
+}
+
+h1, h2
+{
+    $font-size: map-get($map: $font-size-list, $key: desktop);
+    font-size: map-get($map: $font-size, $key: section-heading);
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: section-heading); 
+    }
+    @include mobile-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: mobile);
+        font-size: map-get($map: $font-size, $key: section-heading);
+    }
+}
+
+h3
+{
+    $font-size: map-get($map: $font-size-list, $key: desktop);
+    font-size: map-get($map: $font-size, $key: card-heading);
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: card-heading); 
+    }
+    @include mobile-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: mobile);
+        font-size: map-get($map: $font-size, $key: card-heading);
+    }
+
+}
+
+p, input, button
+{
+    $font-size: map-get($map: $font-size-list, $key: desktop);
+    font-size: map-get($map: $font-size, $key: text);
+    @include tablet-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: tablet);
+        font-size: map-get($map: $font-size, $key: text); 
+    }
+    @include mobile-only
+    {
+        $font-size: map-get($map: $font-size-list, $key: mobile);
+        font-size: map-get($map: $font-size, $key: text);
+    }
+}
+
+// Layouts
+
+body
+{
+    position: relative;
+}
+
+.loading-block
+{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: $white-color;
+    z-index: 2;
+    animation: fade-out 1.9s 3.1s ease-out forwards;
+}
+
+.loader
+{
+    box-sizing: border-box;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: solid 12px transparent;
+    border-right-color: $tertiary-color;
+    border-top-color: $tertiary-color;
+    position: fixed;
+    left: calc(50% - 150px);
+    top: calc(50% - 150px);
+    z-index: 2;
+    animation: spinner 3s linear, fade-out .5s 2.5s ease-out forwards;
+    &::before
+    {
+        box-sizing: border-box;
+        width: 272px;
+        height: 272px;
+        border-radius: 50%;
+        border: solid 14px transparent;
+        border-right-color: $secondary-color;
+        border-top-color: $secondary-color;
+        content:"";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        animation: spinner 3s linear, fade-out .5s 2.5s ease-out forwards;
+    }
+    &::after
+    {
+        box-sizing: border-box;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        border: solid 16px transparent;
+        border-right-color: $primary-color;
+        border-top-color: $primary-color;
+        content: "";
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        animation: spinner 3s ease-in-out, fade-out .5s 2.5s ease-out forwards;
+    }
+}
+
+@keyframes spinner
+{
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade-out
+{
+    80%, 100%
+    {
+        opacity: 0;
+        z-index: 2;
+    }
+    100%
+    {
+        z-index: -1;
+    }
+}
+
+input, button
+{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+header
+{
+    position: relative; // show box-shadow on home page and back button on restaurant page
+    background-color: $white-color;
+    box-shadow: 0 1px 5px darken($gray-color, 25%);
+}
+
+.header
+{
+    &__heading
+    {
+        font-family: 'Shrikhand', sans-serif;
+        font-size: 50px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+        @include tablet-only
+        {
+            font-size: 30px;
+        }
+    }
+    &__icon // arrow shaped back button on the restaurant pages  
+    {
+        content: "";
+        position: absolute;
+        top: 32px;
+        left: 50px;
+        right: 0;
+        bottom: 0;
+        font-size: 30px;
+        width: 27px;
+        height: 30px;
+        color: $black-color;
+        @include tablet-only()
+        {
+            top: 18px;
+            left: 30px;
+            font-size: 24px;
+            width: 21px;
+            height: 24px;
+        }
+        @include mobile-only()
+        {
+            top: 19px;
+            left: 16px;
+            font-size: 20px;
+            width: 17.5px;
+            height: 20px;
+        }
+    }
+    &--normal /* disable header box shadow on restaurant page */
+    {
+        box-shadow: none;
+    }
+}
+
+.search
+{
+    padding: 1rem 1rem;
+    background: $gray-color;
+    text-align: center;
+    box-shadow: inset 0 3px 5px $gray-color;
+    &__form
+    {
+        width: 175px;
+        margin: auto;
+        display: flex;
+    }
+    &__label
+    {
+        padding: 0 1rem 0 0;
+    }
+    &__text // override input element with BEM class
+    {
+        font-family: 'Roboto'; // to refactor
+        font-weight: 500;
+        &:focus
+        {
+            border: none;
+        }
+    }
+    
+}
+
+.description
+{
+    background-color: $lightgray-color;
+    text-align: center;
+    line-height: 1.1;
+    padding: 3rem 1rem 3.5rem 1rem;
+    @include tablet-only()
+    {
+       padding: 2.5rem 1rem 3rem 1rem; 
+    }
+    &__heading
+    {
+        margin: 0;
+        font-weight: bold;
+    }
+    &__text // override p element
+    {
+        font-weight: 300; // doesn't work, to fix
+        font-size: 18px;
+        margin: 1rem 0 2rem 0;
+    }
+    &__button /* two background layers with opacity animation to optimize browser computation */
+    {
+        padding: 1rem 1.5rem;
+        border-radius: 25px;
+        background: linear-gradient(170deg, $secondary-color, $primary-color);
+        box-shadow: 0 5px 7px darken($gray-color, 15%);
+        transition: box-shadow 0.3s ease-in;
+        font-family: 'Roboto'; // to refactor
+        color: $white-color;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:hover 
+        {
+            box-shadow: 0 5px 7px darken($gray-color, 25%);
+            & .description__button--animated
+            {
+               opacity: 1;
+            } 
+        }
+        &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: -1;
+            
+        }
+    }
+}
+
+.how-to
+{
+   
+    padding: 3rem 2rem 4rem 2rem;
+    @include mobile-only()
+    {
+        padding: 3rem 1rem 4rem 1rem;
+    }
+    &__heading
+    {
+        margin: 0 0 0 1rem;
+        @include tablet-only()
+        {
+            margin: 0;
+        }
+    }
+    &__list
+    {
+        margin: auto;
+        padding-left: 0.5rem;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1300px;
+    }
+}
+
+.step /* two background layers with opacity animation to optimize browser computation */
+{
+    position: relative; /* to position the icons, numbers and background layer for step */
+    z-index: 1;
+    width: 100%;
+    height: 80px;
+    max-width: 335px;
+    border-radius: 20px;
+    background-color: $lightgray-color;
+    box-shadow: 0 5px 10px darken($lightgray-color, 10%);
+    transition: box-shadow 0.3s ease-in;
+    margin: 3rem 1rem 4rem 1rem;
+    @include tablet-only()
+    {
+        margin: 2rem 1rem 0 1rem;
+    }
+    @include mobile-only()
+    {
+        margin: 1.5rem 0 0 0;
+    }
+    &__position
+    {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 30px;
+        left: -10px;
+        border-radius: 13px;
+        background-color: $primary-color;
+        color: $white-color;
+        z-index: 1;
+    }
+    &__number
+    {
+        display: inline-block;
+        margin-top: 1px;
+    }
+    &__icon
+    {
+        position: absolute;
+        z-index: 1;
+        left: 2.5rem;
+        top: 32px;
+        font-size: 18px; // (step height - font-size) / 2
+        color: darken($gray-color, 40%);
+    }
+    &:hover
+    {
+        box-shadow: 0 5px 10px darken($lightgray-color, 20%);
+        & .step--animated
+        {
+            opacity: 1;
+        }
+        .step__icon
+        {
+            color: lighten($primary-color, 5%);
+        }
+    }
+    &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        background-color: lighten($primary-color, 35%);
+        opacity: 0;
+        transition: opacity 0.2s;
+        z-index: -1;
+    }
+}
+
+.preview
+{
+    background-color: $lightgray-color;
+    padding: 3rem 2rem 4rem 2rem;
+    @include mobile-only()
+    {
+        padding: 3rem 1rem 4rem 1rem;
+    }
+    &__heading
+    {
+        margin: 0 0 0 1rem;
+        @include tablet-only()
+        {
+            margin: 0;
+        }
+    }
+    &__list
+    {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1100px;
+        @include tablet-only()
+        {
+            max-width: 900px;
+        }
+    }
+}
+
+.menu
+{
+    width: 100%;
+    height: 300px;
+    max-width: 400px;
+    @include tablet-only()
+    {
+        height: 250px;
+        max-width: 335px;  
+    }
+    background-color: $white-color;
+    box-shadow: 0 5px 10px darken($lightgray-color, 10%);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative; /* to position the new restaurant sign */
+    margin: 3rem 3rem 4rem 3rem;
+    @include tablet-only()
+    {
+        margin: 3rem 3rem 1rem 3rem;
+    }
+    @include mobile-only()
+    {
+        margin: 1.5rem 0 0 0;
+    }
+    &__link // ancor separated from the clickable heart
+    {
+        color: $black-color;
+        text-decoration: none;
+        width: 100%;
+        margin-right: 2rem; //separation with the heart icon
+
+    }
+    &__display
+    {
+        height: 220px;
+        @include tablet-only()
+        {
+            height: 175px;
+        }
+        overflow: hidden;
+        cursor: pointer;
+    }
+    &__image
+    {
+        width: 100%;
+        transform: translate(0, -30px);
+    }
+    &__bottom
+    {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__text
+    {
+        padding: 1rem 0 0 0.8rem;
+    }
+    &__name
+    {
+        margin: 0;
+    }
+    &__description
+    {
+        margin: 0.2rem 0 0 0;
+    }
+    &__like
+    {
+        height: max-content;
+        width: max-content;
+        display: inline-block;
+        padding: 1rem 1rem 0 0;
+        margin: 0.3rem 0.5rem 0 0;
+    }
+    &__icon
+    {
+        display: inline-block;
+        color: $darkgray-color;
+        font-size: 22px;
+        padding: 0 0.1rem;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        &--small
+        {
+            content: "";
+            position: absolute;
+            font-size: 20px;
+            color: $white-color;
+            padding: 0;
+            top: 1px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        &:active /* background-color animation to optimise with good practice */
+        {
+            background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+
+/*.fa-heart // inside .menu__like, position a small heart over a bigger one to mimic a border
+{
+    display: inline-block;
+    color: $darkgray-color;
+    font-size: 22px;
+    padding: 0 0.1rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &--small
+    {
+        content: "";
+        position: absolute;
+        font-size: 20px;
+        color: $white-color;
+        padding: 0;
+        top: 1px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &:active background-color animation to optimise with good practice
+    {
+        background: -webkit-linear-gradient($primary-color 0%, $secondary-color 75%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}*/
+
+.new-message // sign for new restaurant
+{
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 65px;
+    border-radius: 3px;
+    padding: 0.3rem;
+    background: $tertiary-color;
+    text-align: center;
+    &__text
+    {
+        margin: 0;
+        color: darken($color: $tertiary-color, $amount: 40%);
+        font-size: 14px;
+    }
+}
+
+footer
+{
+    padding: 1.5rem;
+    background: $darkgray-color;
+    position: relative; /* to position the footer icons */
+    & ul
+    {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: $white-color;
+        line-height: 1.6;
+        & li:first-of-type /* make room for the footer icons */
+        {
+            padding-left: 1.5rem;
+            & + li
+            {
+                padding-left: 1.5rem;
+            }
+        }
+    }
+}
+
+.footer
+{
+    &__heading
+    {
+        font-family: 'Shrikhand', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+        color: $white-color;
+    }
+    &__icon
+    {
+        content: "";
+        position: absolute;
+        top: 5.4rem;
+        left: 1.5rem;
+        font-size: 12px;
+        transform: translateY(4px);
+        color: $white-color;
+        &:first-of-type
+        {
+            top: 4rem;
+        }
+    }
+    &__mail
+    {
+        color: $white-color;
+        text-decoration: none;
+    }
+}
+
+
+
+// restaurant page specific style
+
+.hero
+{
+    overflow: hidden;
+    max-height: 400px;
+    @include mobile-only()
+    {
+        max-height: 350px;
+    }
+    &__image
+    {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        @include mobile-only()
+        {
+            max-height: 350px;
+        }
+        
+    }
+}
+
+main
+{
+    background-color: $lightgray-color; /* to compensate for container translation */
+}
+
+.container
+{
+    border-radius: 35px 35px 0 0;
+    background-color: $lightgray-color;
+    position: relative; /* to position the heart icon on restaurant page */
+    padding: 3rem;
+    @include tablet-only()
+    {
+        padding: 3rem 2rem 1.5rem 2rem;
+    }
+    @include mobile-only()
+    {
+        padding: 2rem 1rem 1.5rem 1rem;
+        transform: translateY(-55px);
+    }
+    &__heading
+    {
+        margin: 0;
+        width: 100%;
+        font-family: 'Shrikhand';
+        font-size: 28px;
+        font-weight: 500;
+    }
+    &__icon /* heart icon */
+    {
+        content:"";
+        font-size: 22px;
+        position: absolute;
+        top: 3.5rem;
+        left: 21rem;
+        @include tablet-only()
+        {
+            left: 20rem;
+        }
+        @include mobile-only()
+        {
+            top: 2.5rem;
+            right: 2rem;
+            left: unset;
+        }
+    }
+    &__list
+    {
+        max-width: 100%;
+        @include tablet-only()
+        {
+            max-width: 1000px; 
+        }
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    &__button /* two background layers with opacity animation to optimize browser computation */
+    {
+        margin: 3rem auto 0 auto;
+        padding: 1rem 1.5rem;
+        width: 180px;
+        height: 50px;
+        border-radius: 25px;
+        font-family: 'Roboto'; // to refactor
+        font-size: 16px;
+        @include mobile-only()
+        {
+            font-size: 14px;
+        }
+        color: $white-color;
+        background: linear-gradient(170deg, $secondary-color, $primary-color);
+        box-shadow: 0 5px 7px darken($gray-color, 15%);
+        transition: box-shadow 0.3s ease-in;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:hover 
+        {
+            box-shadow: 0 5px 7px darken($gray-color, 25%);
+            & .container__button--animated
+            {
+               opacity: 1; 
+            } 
+        }
+        &--animated /* second background layer positionned in absolute to cover the first layer up and z-index to let the text visible */
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(170deg, lighten($secondary-color, 5%), lighten($primary-color, 5%));
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: -1;
+            
+        }
+        
+    }
+}
+
+.meal
+{
+    max-width: 360px;
+    margin: 3rem 20px 0 20px;
+    @include tablet-only()
+    {
+       max-width: 400px;
+       margin: 3rem 10px 0 10px; 
+    }
+    @include mobile-only()
+    {
+        margin: 2rem 0 0 0;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    &__heading
+    {
+        margin: 0 0 0.5rem 0;
+        width: 100%;
+        font-size: 18px;
+        @include mobile-only()
+        {
+            font-size: 16px;
+        }
+        font-weight: lighter;
+        position: relative;
+        &::after // heading decorative line
+        {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: $tertiary-color;
+            bottom: -7px;
+            left: 0;
+        }
+    }
+    &__list /* appearance with opacity and transform translate, to trigger when page is loaded */
+    {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        opacity: 0;
+        animation-name: fadein-menu;
+        animation-duration: 1s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+
+    }
+    &--order /* order button centering */
+    {
+        width: 400px;
+        margin-top: 0;
+        align-self: center;
+    }
+}
+
+.dish /* on click the text make room for a check mark to appear */
+{
+    width: 100%;
+    max-width: 360px;
+    min-height: 70px;
+    border-radius: 15px;
+    margin: 2rem 0 0 0;
+    background-color: $white-color;
+    box-shadow: 0px 1px 10px darken($gray-color, 10%);
+    display: flex; /* use flexbox and overflow to force the check mark out of the block */
+    overflow: hidden;
+    cursor: pointer;
+    @include mobile-only() 
+    {
+        width: 345px;
+        margin: 1rem 0 0 0;
+    }
+    &__text /* text block take all the width to force the check mark out of the block */
+    {
+        box-sizing: border-box;
+        width: 360px;
+        min-width: 360px;
+        @include mobile-only()
+        {
+            width: 345px;
+            min-width: 345px;
+        }
+        padding: 12px;
+        transition: all 0.5s ease-in-out;
+    }
+    &__heading
+    {
+        margin: 0;
+        font-size: 18px;
+        @include mobile-only()
+        {
+          font-size: 16px;  
+        } 
+    }
+    &__description
+    {
+        
+        display: flex;
+        justify-content: space-between;
+    }
+    &__details 
+    {
+        margin: 0.2rem 0 0 0;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 0.5rem;
+        font-weight: lighter;
+        @include mobile-only()
+        {
+           font-size: 14px; 
+        }
+        &--bold
+        {
+            font-weight: bold;
+            overflow: visible;
+        }
+    }
+    &__order
+    {
+        width: 60px;
+        min-width: 60px;
+        height: 100%;
+        background-color: $tertiary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__icon /* secondary action to make the check mark rotate when appearing */
+    {
+        color: $white-color;
+        background-color: $tertiary-color;
+    }
+    &:active
+    {
+        & .dish__text
+        {
+            min-width: 300px;
+            @include mobile-only()
+            {
+                min-width: 285px;
+            }
+            /*animation: dish-text .5s ease-in-out forwards;*/
+        }
+        & .dish__icon
+        {
+            animation: dish-icon .3s ease .2s forwards;
+        } 
+    }
+}
+
+@keyframes dish-icon
+{
+    from
+    {
+        transform: rotate(-270deg);
+    }
+    to
+    {
+        transform: rotate(0deg);
+    }
+}
+
+/*@keyframes dish-text
+{
+    0%
+    {
+        width: 360px;
+        min-width: 360px;
+    }
+    100%
+    {
+        width: 300px;
+        min-width: 300px;
+    }
+}
+    
+@include mobile-only()
+{
+    @keyframes dish-text
+    {
+        0%
+        {
+            width: 345px;
+            min-width: 345px;
+        }
+        100%
+        {
+            width: 285px;
+            min-width: 285px;
+        }
+    }
+}*/
+
+
